@@ -65,7 +65,8 @@ public class WeShareServer {
     public static void main(String[] args) {
         WeShareServer server = new WeShareServer();
         seedDemoData();
-        server.start(5050);
+        int port = System.getenv("PORT") != null ? Integer.parseInt(System.getenv("PORT")): 80;
+        server.start(port);
     }
 
     @Nullable

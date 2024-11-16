@@ -1,7 +1,6 @@
-FROM public.ecr.aws/docker/library/node:buster-slim
-WORKDIR /usr/src/app
-COPY package*.json ./
-RUN npm install
-COPY . .
+FROM amazoncorretto:17
+WORKDIR /app
+COPY target/weshare-mvc-exercise-1.0-SNAPSHOT-jar-with-dependencies.jar WeShare.jar
 EXPOSE 80
-CMD ["node", "server.js"]
+ENV PORT=80
+ENTRYPOINT ["java", "-jar", "WeShare.jar"]
