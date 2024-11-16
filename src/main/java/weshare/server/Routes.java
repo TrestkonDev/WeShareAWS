@@ -21,6 +21,9 @@ public class Routes {
 
     public static void configure(WeShareServer server) {
         server.routes(() -> {
+            // Ping healthcheck for AWS
+            get("/ping", ctx -> ctx.result("ok"));
+            
             post(LOGIN_ACTION,  PersonController.login);
             get(LOGOUT,         PersonController.logout);
             get(EXPENSES,           ExpensesController.view);
