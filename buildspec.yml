@@ -25,10 +25,10 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - echo "Listing contents of the built image..."
-      - docker run --rm $REPOSITORY_URI:latest ls -la /app
-      # - echo "Checking Java version in container..."
-      # - docker run --rm $REPOSITORY_URI:latest java -version
+      - echo "Checking image contents..."
+      - docker run --rm --entrypoint ls $REPOSITORY_URI:latest -la /app
+      - echo "Checking Java version in image..."
+      - docker run --rm --entrypoint java $REPOSITORY_URI:latest -version
       - echo Pushing the Docker images...
       - docker push $REPOSITORY_URI:latest
       - docker push $REPOSITORY_URI:$IMAGE_TAG
